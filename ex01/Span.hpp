@@ -7,14 +7,15 @@ class Span
 {
 	private:
 		unsigned int			N;
-		std::vector<unsigned int>	vec(0);
-		std::vector<unsigned int>	intervals(0);
+		std::vector<unsigned int>	vec;
+		std::vector<unsigned int>	intervals;
 
 	public:
 		Span(unsigned int N);
 		~Span();
 		void		addNumber(unsigned int num);		
-		unsigned int	getIntervals(std::string parameter)
+		unsigned int	getIntervals(const std::string& parameter);
+		unsigned int	shortAndReturn(const std::string& parameter);
 		unsigned int	shortestSpan(void);
 		unsigned int	longestSpan(void);
 };

@@ -6,35 +6,48 @@ Span::~Span() {}
 
 void				Span::addNumber(unsigned int num)
 {
-	int	i;
-
-	i = 0;
-	while (this->vec[i])
-		i++;
-	if (i > this->N)
+	if (this->vec.size() > this->N)
 		throw (std::out_of_range("Out of range. The vector of numbers it's full"));
 	else
 		this->vec.push_back(num);
 
 }
 
-template <typename T>
-static inline unsigned int	countVecElements(const T& container)
+unsigned int			Span::shortAndReturn(const std::string& parameter)
 {
+	unsigned int	tmp;
 	unsigned int	i;
-
+	
+	tmp = this->intervals[0];
 	i = 0;
-	while (container[i])
-		i++;
-	return (i);	
+	while (this->intervals[i])
+	{
+		if (parameter == "short")
+		{
+			if (tmp > this->intervals[i])
+				tmp = this->intervals[i];
+			i++;
+		}
+		else if (parameter == "long")
+		{
+			if (tmp < this->intervals[i])
+				tmp = this->intervals[i];
+			i++;
+		}
+	}
+	return (tmp);
 }
 
-unsigned int			Span::getIntervals(std::string parameter)
+unsigned int			Span::getIntervals(const std::string& parameter)
 {
 	unsigned int	i;
+	unsigned int	vec_max;
 
 	i = 0;
-	vec_max = coutVecElements(this->vec);
+	while (this->vec[i])
+		i++;
+	vec_max = i;
+	i = 0;
 	while (i < vec_max)
 	{
 		if (this->vec[i] && this->vec[i + 1])
@@ -57,7 +70,7 @@ unsigned int			Span::shortestSpan(void)
 	while (this->vec[i])
 		i++;
 	if (i < 2)
-		throw(runtime_error("There must be at least 2 numbers in the vector"));
+		throw(std::runtime_error("There must be at least 2 numbers in the vector"));
 	return (getIntervals("short"));
 }
 
@@ -69,7 +82,7 @@ unsigned int			Span::longestSpan(void)
 	while (this->vec[i])
 		i++;
 	if (i < 2)
-		throw(runtime_error("There must be at least 2 numbers in the vector"));
+		throw(std::runtime_error("There must be at least 2 numbers in the vector"));
 	return (getIntervals("long"));
 
 }
