@@ -41,14 +41,9 @@ unsigned int			Span::shortAndReturn(const std::string& parameter)
 unsigned int			Span::getIntervals(const std::string& parameter)
 {
 	unsigned int	i;
-	unsigned int	vec_max;
 
 	i = 0;
-	while (this->vec[i])
-		i++;
-	vec_max = i;
-	i = 0;
-	while (i < vec_max)
+	while (i < this->vec.size())
 	{
 		if (this->vec[i] && this->vec[i + 1])
 		{
@@ -64,26 +59,15 @@ unsigned int			Span::getIntervals(const std::string& parameter)
 
 unsigned int			Span::shortestSpan(void)
 {
-	unsigned int	i;
-
-	i = 0;
-	while (this->vec[i])
-		i++;
-	if (i < 2)
+	if (this->vec.size() < 2)
 		throw(std::runtime_error("There must be at least 2 numbers in the vector"));
 	return (getIntervals("short"));
 }
 
 unsigned int			Span::longestSpan(void)
 {
-	unsigned int	i;
-
-	i = 0;
-	while (this->vec[i])
-		i++;
-	if (i < 2)
+	if (this->vec.size() < 2)
 		throw(std::runtime_error("There must be at least 2 numbers in the vector"));
 	return (getIntervals("long"));
-
 }
 
