@@ -2,6 +2,22 @@
 
 Span::Span(unsigned int N) : N(N) {}
 
+Span::Span(const Span& copy)
+{
+	*this = copy;
+}
+
+const Span& Span::operator = (const Span& copy)
+{
+	if (this != &copy)
+	{
+		this->N = copy.N;		
+		this->vec = copy.vec;
+		this->intervals = copy.intervals;
+	}
+	return (*this);
+}
+
 Span::~Span() {}
 
 void				Span::addNumber(unsigned int num)
