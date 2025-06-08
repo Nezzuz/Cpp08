@@ -1,8 +1,7 @@
 NAME = ex02
 ex02 = ex02
 
-SRC = 	main.cpp \
-	Span.cpp
+SRC = 	main.cpp 
 
 CXX = c++ 
 
